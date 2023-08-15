@@ -1,0 +1,10 @@
+Package: mcensal2020
+Title: Analyzes variables from the 2020 mexican census sample
+Version: 0.0.0.9000
+Authors@R: 
+    person("Julio", "Martinez", , "jcms2665@gmail.com", role = c("aut", "cre"))
+Description: The mcensal2020 package offers tools for validating and examining variables in census samples. It enables users to assess the precision of census sample data by contrasting unweighted and weighted proportions, as well as evaluating the effects of unequal weighting
+License: `use_mit_license()`
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
