@@ -1,29 +1,22 @@
 
 #--------------------------------------------------------------------------------
-# Tema:       Generar rw y deff
-# Autor:      Julio Cesar <jcms2665@gmail.com>
-# Fecha:      agosto 2022
-# Datos:      Muestra censal 2020, INEGI.
-#             https://www.inegi.org.mx/programas/ccpv/2020/
+# Goal:             Generar rw y deff
+# Author:           Julio Cesar <jcms2665@gmail.com>
+# Date:             agosto 2023
+# Data:             Muestra censal 2020, INEGI.
+#                   https://www.inegi.org.mx/programas/ccpv/2020/
      
+# Content
 
-# Contenido
+#       1. Initial settings
+#       Table 1. Summary of the distribution of the PSU and observations in the census sample
+#       Table 3. Comparison of weighted and unweighted frequencies.
 
-#       1. Cargar librerias
-#       2. Directorio de trabajo
-#       3. Importar datos
-#           3.1 Etiquetar variables
-#           3.2 Etiquetar datos
-#       4. Graficas (ggplot)
-#           4.1 Con una variable discreta
-#           4.2 Con dos variables discretas
-#           4.3 Con una variable continua
-#           4.4 Una variable continua y una discreta
 
 #--------------------------------------------------------------------------------
 
 
-# 1. Cargar librerias
+# 1. Initial settings
 
 
 rm(list=ls()); graphics.off(); options(warn=-1)              
@@ -31,8 +24,8 @@ paquetes=c("foreign", "stats", "tidyverse", "data.table", "data.table", "dplyr",
 for (i in paquetes) {if (!require(i, character.only = TRUE)) {install.packages(i);library(i, character.only = TRUE)} else {library(i, character.only = TRUE)}}
 
 
-datos="C:/Users/jcmartinez/OneDrive - El Colegio de México A.C/1 Proyectos/2023/66 Census/1 Datos/INEGI/Censo2020/CVS"
-resultados="C:/Users/jcmartinez/OneDrive - El Colegio de México A.C/1 Proyectos/2023/66 Census/3 Resultados"
+datos="..../Censo2020/CVS"
+resultados="....."
 
 
 setwd(datos)
@@ -42,28 +35,6 @@ personas=read_csv("Personas00.CSV")
 
 censo=personas %>% select("ID_VIV","ID_PERSONA","ENT", "ESTRATO", "UPM", "FACTOR", "SEXO", "EDAD", "AFRODES", "DIS_VER", "HLENGUA", "NIVACAD", "CONACT", "SERVICIO_MEDICO")
 
-
-
-
-library(ggplot2)
-
-# Create the boxplot
-ggplot(viv, aes(x=COBERTURA, y=FACTOR)) + 
-  geom_boxplot() +
-  labs(title = "Boxplot of FACTOR by COBERTURA", 
-       x = "COBERTURA", 
-       y = "FACTOR")
-
-viviendas_sample <- vivienda %>%
-  sample_n(10000) %>%
-  select(COBERTURA, FACTOR)
-setwd(resultados)
-
-write.csv(viviendas_sample, "viviendas_sample.csv")
-
-  max(vivienda$FACTOR)
-
-# Table 1: Overview of the Distribution of Primary Sampling Units (PSU) and Number of Households per PSU
 
 #--------------------------------------------------------------------------------------------------------------------------
   
@@ -105,8 +76,6 @@ write.csv(tabla_1, "tabla_1.csv")
 #--------------------------------------------------------------------------------------------------------------------------
 
 # Table 3. Comparison of weighted and unweighted frequencies.
-
-
 
 
 t1=censo %>%
